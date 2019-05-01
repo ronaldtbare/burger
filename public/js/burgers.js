@@ -6,10 +6,12 @@ $(document).ready(function () {
         event.preventDefault();
 
         console.log("add a burger button pressed.")
+        console.log($("#burgername").val());
+        console.log($.trim("    hello, how are you?    "));
 
         var newBurger = {
-            name: $("#burgerName").val().trim(),
-            devoured: $("[name=sleepy]:checked").val().trim()
+            burger_name: $("#burgername").val().trim(),
+            devoured: 0
         };
 
         // Send the POST request.
@@ -25,16 +27,15 @@ $(document).ready(function () {
         );
     });
 
-    $("#devourIt").on("click", function (event) {
+    $(".devourIt").on("click", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
         console.log("devourit button pressed.")
-
-        // Send the PUT request.
-        $.ajax("/api/burger"+id, {
-            type: "PUT",
-            data: devoured
+        var id = $(this).data("id");
+        // Send the PUT request. Change devoured:false to devoured true.
+        $.ajax("/api/burger/" + id, {
+            type: "PUT", 
         }).then(
             function () {
                 console.log("devoured burger");
@@ -42,8 +43,5 @@ $(document).ready(function () {
                 location.reload();
             }
         );
-
     });    
-
-    
 });

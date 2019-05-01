@@ -2,7 +2,7 @@
 
 <div class="container">
     <!-- Content here -->
-    <div class="jumbotron">
+    <div class="jumbotron bglightyellow">
         <img src="./images/burger.png" alt="burger image" width="200" height="150">
         <h1 class="display-4">Eat Da Burger!</h1>
         
@@ -15,11 +15,11 @@
             <h3 class="about">To Eat List</h3>
                 <ul>
                     {{#each burgers}}
-                    {{#if this.devoured}}
+                    {{#unless this.devoured}}
                     <div>
-                        {{this.id}}. {{this.burger_name}} <button type="button" id="devourIt" class="btn btn-success">Devour It!</button>
+                        {{this.id}}. {{this.burger_name}} <button type="button" data-id="{{this.id}}" class="btn btn-success devourIt">Devour It!</button>
                     </div>
-                    {{/if}}
+                    {{/unless}}
                     {{/each}}
                 </ul>
                 
@@ -28,11 +28,11 @@
             <h3 class="about">Already Eaten List</h3>
             <ul>
                 {{#each burgers}}
-                {{#unless this.devoured}}
+                {{#if this.devoured}}
                 <div>
                     {{this.id}}. {{this.burger_name}}
                 </div>
-                {{/unless}}
+                {{/if}}
                 {{/each}}
             </ul>
         </div>
@@ -43,7 +43,7 @@
 
     <div class="form-group">
         
-        <input type="text" id="burgername" name="name">
+        <input type="text" id="burgername" name="burger_name">
     </div>
 
     
