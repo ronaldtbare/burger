@@ -5,10 +5,6 @@ $(document).ready(function () {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
-        console.log("add a burger button pressed.")
-        console.log($("#burgername").val());
-        console.log($.trim("    hello, how are you?    "));
-
         var newBurger = {
             burger_name: $("#burgername").val().trim(),
             devoured: 0
